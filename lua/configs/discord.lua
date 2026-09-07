@@ -1,8 +1,8 @@
 -- The setup config table shows all available config options with their default values:
 require("neocord").setup({
   -- General options
-  logo                = "https://github.com/user-attachments/assets/118d54bd-aaba-48bb-a312-aad42f13acc5",
-  logo_tooltip        = "Violet Vim",
+  logo                = "https://github.com/user-attachments/assets/827b0bd6-558a-4971-86c7-1b1fa56e9a00",
+  logo_tooltip        = "VioletVim",
   main_image          = "logo",                                                                                                                                      -- "language" or "logo"
   client_id           = "1157438221865717891",                                                                                                                       -- Use your own Discord application client id (not recommended)
   log_level           = nil,                                                                                                                                         -- Log messages at or above this level (one of the following: "debug", "info", "warn", "error")
