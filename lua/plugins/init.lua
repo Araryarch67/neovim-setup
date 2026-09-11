@@ -130,8 +130,17 @@ return {
   -- trouble nvim
   {
     "folke/trouble.nvim",
-    opts = {},
     lazy = false,
+    opts = {
+      modes = {
+        diagnostics = {
+          win = { target = "float", width = 0.7, height = 0.6 },
+        },
+        lsp_document_symbols = {
+          win = { target = "float", width = 0.7, height = 0.6 },
+        },
+      },
+    },
     cmd = "Trouble",
   },
 

@@ -39,3 +39,20 @@ end, { desc = "Toggle inlay hints" })
 map("n", "<leader>mw", function()
   require("mywpm").open_dashboard()
 end, { desc = "Open mywpm dashboard" })
+
+map("n", "<leader>E", ":Trouble diagnostics toggle<CR>", { desc = "Toggle diagnostics (float)" })
+
+map("n", "<leader>yd", function()
+  local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 })
+  if #diagnostics == 0 then
+    vim.notify("No diagnostics on this line", vim.log.levels.INFO)
+    return
+  end
+  local lines = {}
+  for _, d in ipairs(diagnostics) do
+    local severity = ({ "ERROR", "WARN", "INFO", "HINT" })[d.severity] or ""
+    table.insert(lines, severity .. ": " .. d.message)
+  end
+  vim.fn.setreg("+", table.concat(lines, "\n"))
+  vim.notify("Diagnostic copied!")
+end, { desc = "Copy line diagnostics to clipboard" })

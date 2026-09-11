@@ -9,6 +9,7 @@ vim.diagnostic.config({ virtual_text = false })
 
 M.base46 = {
   theme = "everblush",
+  transparency = true,
   hl_override = {
     Comment = { italic = true },
     ["@comment"] = { italic = true },
