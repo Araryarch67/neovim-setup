@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
+    -- dimuat saat startup supaya format_on_save (configs/conform.lua) aktif untuk webdev
     opts = require "configs.conform",
   },
 
@@ -151,6 +151,33 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    opts = {
+      ensure_installed = {
+        "vim",
+        "lua",
+        "vimdoc",
+        -- webdev
+        "html",
+        "css",
+        "scss",
+        "javascript",
+        "typescript",
+        "tsx",
+        "json",
+        "jsonc",
+        "jsdoc",
+        "regex",
+        "vue",
+        "svelte",
+        "astro",
+        "graphql",
+        "yaml",
+        "toml",
+        "markdown",
+        "markdown_inline",
+        "bash",
+      },
+    },
   },
 
   {
