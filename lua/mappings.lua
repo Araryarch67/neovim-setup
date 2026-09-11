@@ -7,6 +7,16 @@ local map = vim.keymap.set
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
+-- gerak per display-line (wrap), tapi tetap support count kayak 5j
+-- n = normal, v = visual+select, x = visual, o = operator-pending (dj/y j/dll)
+map({ "n", "v", "x", "o" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Move down (wrap-aware)", expr = true, silent = true })
+map({ "n", "v", "x", "o" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Move up (wrap-aware)", expr = true, silent = true })
+map({ "n", "v", "x", "o" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Move down (wrap-aware)", expr = true, silent = true })
+map({ "n", "v", "x", "o" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Move up (wrap-aware)", expr = true, silent = true })
+-- insert mode: arrow tetap jalan per display-line, tetap di insert mode
+map("i", "<Down>", "<C-o>gj", { desc = "Move down (wrap-aware)", silent = true })
+map("i", "<Up>", "<C-o>gk", { desc = "Move up (wrap-aware)", silent = true })
+
 map("n", "<C-t>", function()
   require("minty.shades").open({ border = false })
 end, {})
