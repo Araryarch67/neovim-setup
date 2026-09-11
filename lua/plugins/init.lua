@@ -102,6 +102,42 @@ return {
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
+  -- override nvim-cmp: navigasi arrow + completion command mode
+  {
+    "hrsh7th/nvim-cmp",
+    event = { "InsertEnter", "CmdlineEnter" },
+    dependencies = {
+      "hrsh7th/cmp-cmdline",
+    },
+    opts = function(_, opts)
+      local cmp = require "cmp"
+      -- pilih item pakai arrow atas/bawah (insert mode)
+      opts.mapping["<Down>"] = cmp.mapping.select_next_item()
+      opts.mapping["<Up>"] = cmp.mapping.select_prev_item()
+      return opts
+    end,
+    config = function(_, opts)
+      local cmp = require "cmp"
+      cmp.setup(opts)
+
+      -- autocompletion saat `:` (command mode)
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources(
+          { { name = "async_path" } },
+          { { name = "cmdline" } }
+        ),
+        matching = { disallow_symbol_nonprefix_matching = false },
+      })
+
+      -- autocompletion saat `/` dan `?` (search)
+      cmp.setup.cmdline({ "/", "?" }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = { { name = "buffer" } },
+      })
+    end,
+  },
+
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
