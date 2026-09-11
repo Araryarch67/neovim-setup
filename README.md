@@ -1,5 +1,9 @@
 # nvim dotfiles (NvChad v2.5 based)
 
+![Neovim](https://img.shields.io/badge/Neovim-0.10+-57A143?logo=neovim&logoColor=white)
+![NvChad](https://img.shields.io/badge/NvChad-v2.5-61AFEF)
+![License](https://img.shields.io/badge/License-Unlicense-lightgrey)
+
 <img width="447" height="447" alt="images" src="https://github.com/user-attachments/assets/827b0bd6-558a-4971-86c7-1b1fa56e9a00" />
 
 Basis: [NvChad v2.5](https://github.com/NvChad/NvChad/tree/v2.5) via `lazy.nvim`.
@@ -91,3 +95,7 @@ Install/update: `:TSUpdate`, `:TSInstall <lang>`, `:TSInstallAll`.
 - `<C-t>` minty shades, `<C-p>` floaterm, `<C-l>` triforce
 - klik-kanan → nvzone menu
 - `<leader>ih` toggle inlay hint, `<leader>mw>` mywpm dashboard, `<leader>E` trouble diagnostics, `<leader>yd` copy diagnostics baris ini
+
+## Credits
+
+Forked from [slowy07/my-dotfiles](https://github.com/slowy07/my-dotfiles).
