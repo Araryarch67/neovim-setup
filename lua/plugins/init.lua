@@ -111,18 +111,28 @@ return {
     },
     opts = function(_, opts)
       local cmp = require "cmp"
-      -- pilih item pakai arrow atas/bawah (insert mode)
-      opts.mapping["<Down>"] = cmp.mapping.select_next_item()
-      opts.mapping["<Up>"] = cmp.mapping.select_prev_item()
+      -- pilih item pakai arrow atas/bawah (insert mode), langsung isi text
+      opts.mapping["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert }
+      opts.mapping["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert }
       return opts
     end,
     config = function(_, opts)
       local cmp = require "cmp"
       cmp.setup(opts)
 
+      -- mapping cmdline: arrow atas/bawah + Tab langsung autocomplete
+      local cmdline_mapping = cmp.mapping.preset.cmdline {
+        ["<Down>"] = {
+          c = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+        },
+        ["<Up>"] = {
+          c = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+        },
+      }
+
       -- autocompletion saat `:` (command mode)
       cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
+        mapping = cmdline_mapping,
         sources = cmp.config.sources(
           { { name = "async_path" } },
           { { name = "cmdline" } }
@@ -132,7 +142,7 @@ return {
 
       -- autocompletion saat `/` dan `?` (search)
       cmp.setup.cmdline({ "/", "?" }, {
-        mapping = cmp.mapping.preset.cmdline(),
+        mapping = cmdline_mapping,
         sources = { { name = "buffer" } },
       })
     end,
