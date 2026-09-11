@@ -42,7 +42,7 @@ M.ui = {
     enabled = false,
   },
   statusline = {
-    theme = "minimal",
+    theme = "vscode_colored",
     separator_style = "default",
   },
   cmp = {
